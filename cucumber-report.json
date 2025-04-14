@@ -1,0 +1,50 @@
+[
+  {
+    "description": "  As a tester\n  I want to verify the test setup\n  So that I can confirm everything is working correctly",
+    "elements": [
+      {
+        "description": "",
+        "id": "basic-acceptance-test;verify-test-environment",
+        "keyword": "Scenario",
+        "line": 6,
+        "name": "Verify test environment",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "I am on the test page",
+            "match": {
+              "location": "src/acceptance/steps/basic.steps.ts:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 966536337
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 8,
+            "name": "I should see the page title",
+            "match": {
+              "location": "src/acceptance/steps/basic.steps.ts:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23389755
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "basic-acceptance-test",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Basic Acceptance Test",
+    "tags": [],
+    "uri": "src/acceptance/features/basic.feature"
+  }
+]
