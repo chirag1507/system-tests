@@ -1,6 +1,7 @@
 import { chromium, Browser, Page } from "@playwright/test";
 import { setWorldConstructor, World } from "@cucumber/cucumber";
 import { PropertySearchWebDriver } from "../drivers/web/property_search_web_driver";
+import { PropertySearchApiDriver } from "../drivers/api/property_search_api_driver";
 import { PropertySearchDSL } from "../dsl/property_search_dsl";
 
 export class CustomWorld extends World {
@@ -18,6 +19,7 @@ export class CustomWorld extends World {
     });
 
     const driver = new PropertySearchWebDriver(this.page);
+    //const driver = new PropertySearchApiDriver();
     this.dsl = new PropertySearchDSL(driver);
   }
 
@@ -30,5 +32,4 @@ export class CustomWorld extends World {
     }
   }
 }
-
 setWorldConstructor(CustomWorld);
