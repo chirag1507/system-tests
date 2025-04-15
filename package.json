@@ -4,7 +4,7 @@
   "description": "System level acceptance tests following Dave Farley's principles",
   "main": "index.js",
   "scripts": {
-    "test:acceptance": "cucumber-js",
+    "test:acceptance": "cucumber-js --format progress",
     "test:acceptance:report": "cucumber-js --format @cucumber/pretty-formatter",
     "test:acceptance:parallel": "cucumber-js --parallel 2",
     "build": "tsc",

@@ -10,6 +10,14 @@
         "name": "Verify test environment",
         "steps": [
           {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 116309944
+            }
+          },
+          {
             "arguments": [],
             "keyword": "Given ",
             "line": 7,
@@ -19,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 966536337
+              "duration": 908239663
             }
           },
           {
@@ -32,7 +40,15 @@
             },
             "result": {
               "status": "passed",
-              "duration": 23389755
+              "duration": 23417489
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 3963470
             }
           }
         ],
@@ -46,5 +62,95 @@
     "name": "Basic Acceptance Test",
     "tags": [],
     "uri": "src/acceptance/features/basic.feature"
+  },
+  {
+    "description": "  As a potential home buyer\n  I want to search for properties\n  So that I can find my dream home",
+    "elements": [
+      {
+        "description": "",
+        "id": "property-search;basic-property-search-in-a-suburb",
+        "keyword": "Scenario",
+        "line": 6,
+        "name": "Basic property search in a suburb",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 94970129
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "I am on the property search page",
+            "match": {
+              "location": "src/acceptance/steps/property_search.steps.ts:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7408839173
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I search for properties in \"Richmond\"",
+            "match": {
+              "location": "src/acceptance/steps/property_search.steps.ts:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6559146012
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "I should see a list of properties in \"Richmond\"",
+            "match": {
+              "location": "src/acceptance/steps/property_search.steps.ts:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 239161678
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 10,
+            "name": "the search results should be relevant to my search",
+            "match": {
+              "location": "src/acceptance/steps/property_search.steps.ts:24"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 208512008
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 39996246
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "property-search",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Property Search",
+    "tags": [],
+    "uri": "src/acceptance/features/property_search.feature"
   }
 ]
