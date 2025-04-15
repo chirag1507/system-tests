@@ -1,5 +1,6 @@
 import { Property } from "./models/property";
 import { PropertySearchDriver } from "../drivers/property_search_driver.interface";
+import { SearchFilters } from "./models/filters";
 
 export class PropertySearchDSL {
   private driver: PropertySearchDriver;
@@ -12,8 +13,8 @@ export class PropertySearchDSL {
     await this.driver.navigateToPropertySearch();
   }
 
-  async searchProperties(suburb: string): Promise<void> {
-    await this.driver.searchProperties(suburb);
+  async searchProperties(suburb: string, filters?: SearchFilters): Promise<void> {
+    await this.driver.searchProperties(suburb, filters);
   }
 
   async getSearchResults(): Promise<Property[]> {
