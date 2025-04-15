@@ -1,12 +1,33 @@
 import { setWorldConstructor, World } from "@cucumber/cucumber";
-import { Browser, Page } from "@playwright/test";
+import { Browser, chromium, Page } from "@playwright/test";
+import { PropertySearchDSL } from "../../dsl/property_search_dsl";
+import { PropertySearchWebDriver } from "../../drivers/web/property_search_web_driver";
 
 export class CustomWorld extends World {
-  browser?: Browser;
-  page?: Page;
+  public dsl?: PropertySearchDSL;
+  protected page?: Page;
+  protected browser?: Browser;
 
-  constructor(options: any) {
-    super(options);
+  async init() {
+    this.browser = await chromium.launch();
+    this.page = await this.browser.newPage();
+
+    // Add the specific header that bypasses DataDome
+    await this.page.setExtraHTTPHeaders({
+      "user-agent": "avesta-ua",
+    });
+
+    const driver = new PropertySearchWebDriver(this.page);
+    this.dsl = new PropertySearchDSL(driver);
+  }
+
+  async destroy() {
+    if (this.page) {
+      await this.page.close();
+    }
+    if (this.browser) {
+      await this.browser.close();
+    }
   }
 }
 
