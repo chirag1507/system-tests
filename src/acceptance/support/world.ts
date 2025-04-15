@@ -1,7 +1,7 @@
+import { chromium, Browser, Page } from "@playwright/test";
 import { setWorldConstructor, World } from "@cucumber/cucumber";
-import { Browser, chromium, Page } from "@playwright/test";
-import { PropertySearchDSL } from "../dsl/property_search_dsl";
 import { PropertySearchWebDriver } from "../drivers/web/property_search_web_driver";
+import { PropertySearchDSL } from "../dsl/property_search_dsl";
 
 export class CustomWorld extends World {
   public dsl?: PropertySearchDSL;
