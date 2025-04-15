@@ -1,7 +1,7 @@
 import { Property } from "./models/property";
 import { PropertySearchDriver } from "../drivers/property_search_driver.interface";
 
-export class PropertySearchDSL implements PropertySearchDSL {
+export class PropertySearchDSL {
   private driver: PropertySearchDriver;
 
   constructor(driver: PropertySearchDriver) {

@@ -14,7 +14,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 116309944
+              "duration": 114184666
             }
           },
           {
@@ -23,11 +23,11 @@
             "line": 7,
             "name": "I am on the test page",
             "match": {
-              "location": "src/acceptance/steps/basic.steps.ts:8"
+              "location": "src/acceptance/step_definitions/basic.steps.ts:8"
             },
             "result": {
               "status": "passed",
-              "duration": 908239663
+              "duration": 923573573
             }
           },
           {
@@ -36,11 +36,11 @@
             "line": 8,
             "name": "I should see the page title",
             "match": {
-              "location": "src/acceptance/steps/basic.steps.ts:14"
+              "location": "src/acceptance/step_definitions/basic.steps.ts:14"
             },
             "result": {
               "status": "passed",
-              "duration": 23417489
+              "duration": 21234943
             }
           },
           {
@@ -48,7 +48,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 3963470
+              "duration": 4889864
             }
           }
         ],
@@ -78,7 +78,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 94970129
+              "duration": 94674210
             }
           },
           {
@@ -87,11 +87,11 @@
             "line": 7,
             "name": "I am on the property search page",
             "match": {
-              "location": "src/acceptance/steps/property_search.steps.ts:7"
+              "location": "src/acceptance/step_definitions/property_search_steps.ts:5"
             },
             "result": {
               "status": "passed",
-              "duration": 7408839173
+              "duration": 7525666059
             }
           },
           {
@@ -100,11 +100,11 @@
             "line": 8,
             "name": "I search for properties in \"Richmond\"",
             "match": {
-              "location": "src/acceptance/steps/property_search.steps.ts:11"
+              "location": "src/acceptance/step_definitions/property_search_steps.ts:12"
             },
             "result": {
               "status": "passed",
-              "duration": 6559146012
+              "duration": 6305581601
             }
           },
           {
@@ -113,11 +113,11 @@
             "line": 9,
             "name": "I should see a list of properties in \"Richmond\"",
             "match": {
-              "location": "src/acceptance/steps/property_search.steps.ts:15"
+              "location": "src/acceptance/step_definitions/property_search_steps.ts:19"
             },
             "result": {
               "status": "passed",
-              "duration": 239161678
+              "duration": 238867023
             }
           },
           {
@@ -126,11 +126,11 @@
             "line": 10,
             "name": "the search results should be relevant to my search",
             "match": {
-              "location": "src/acceptance/steps/property_search.steps.ts:24"
+              "location": "src/acceptance/step_definitions/property_search_steps.ts:28"
             },
             "result": {
               "status": "passed",
-              "duration": 208512008
+              "duration": 215491545
             }
           },
           {
@@ -138,7 +138,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 39996246
+              "duration": 42179850
             }
           }
         ],
