@@ -5,6 +5,8 @@ import { PropertySearchApiDriver } from "../drivers/api/property_search_api_driv
 import { PropertySearchDSL } from "../dsl/property_search_dsl";
 import { PropertySearchDriver } from "../drivers/property_search_driver.interface";
 import { ITestCaseHookParameter } from "@cucumber/cucumber/lib/support_code_library_builder/types";
+import { parseTag } from "../../types/test.types";
+import { validateFeatureTags } from "../../types/feature.validator";
 
 export class CustomWorld extends World {
   public dsl?: PropertySearchDSL;
@@ -15,8 +17,17 @@ export class CustomWorld extends World {
 
   async init() {
     const tags = this.scenario?.pickle.tags.map((tag: { name: string }) => tag.name) || [];
-    const isUITest = tags.includes("@ui");
-    const isApiTest = tags.includes("@api");
+
+    try {
+      validateFeatureTags(tags);
+    } catch (error) {
+      console.error("Invalid tags in feature file:", error);
+      throw error;
+    }
+
+    const testTags = tags.map(parseTag).filter((tag): tag is NonNullable<typeof tag> => tag !== null);
+    const isUITest = testTags.some((tag) => tag.driver === "ui");
+    const isApiTest = testTags.some((tag) => tag.driver === "api");
 
     if (isUITest) {
       this.browser = await chromium.launch();
