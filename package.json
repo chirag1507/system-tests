@@ -9,6 +9,9 @@
     "test:acceptance:report": "cucumber-js --format html:cucumber-report.html && xdg-open cucumber-report.html",
     "test:acceptance:watch": "cucumber-js --format progress --watch",
     "test:acceptance:parallel": "cucumber-js --parallel 2",
+    "test:smoke": "playwright test src/smoke/tests/",
+    "test:smoke:headed": "playwright test src/smoke/tests/ --headed",
+    "test:smoke:debug": "playwright test src/smoke/tests/ --debug",
     "build": "tsc",
     "clean": "rm -rf dist",
     "pretest": "npm run build"
