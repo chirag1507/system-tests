@@ -2,7 +2,7 @@ import { test } from "@playwright/test";
 import { chromium, Browser, Page } from "@playwright/test";
 import { HomePage } from "../drivers/web/pages/home.page";
 
-test.describe("Basic System Health", () => {
+test.describe("Homepage", () => {
   let browser: Browser;
   let page: Page;
   let homePage: HomePage;
@@ -13,10 +13,11 @@ test.describe("Basic System Health", () => {
 
   test.beforeEach(async () => {
     page = await browser.newPage();
-    // Add the specific header that bypasses DataDome
+
     await page.setExtraHTTPHeaders({
       "user-agent": "avesta-ua",
     });
+
     homePage = new HomePage(page);
   });
 
