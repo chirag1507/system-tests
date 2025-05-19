@@ -3,7 +3,7 @@ import { SearchFilters } from "../../dsl/models/filters";
 import { PropertySearchDriver } from "../property_search_driver.interface";
 import { ApiResponse } from "./types";
 import { convertToValidPropertyType } from "./utils";
-import { API_CONFIG } from "./constants";
+import { API_CONFIG, API_ENDPOINTS, API_HEADERS } from "../../../config";
 
 export class PropertySearchApiDriver implements PropertySearchDriver {
   private searchResponse: any;
@@ -40,9 +40,9 @@ export class PropertySearchApiDriver implements PropertySearchDriver {
       propertyTypes: filters?.propertyType ? [convertToValidPropertyType(filters.propertyType)] : undefined,
     };
 
-    const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.SEARCH}`, {
+    const response = await fetch(`${API_CONFIG.BASE_URL}${API_ENDPOINTS.SEARCH}`, {
       method: "POST",
-      headers: API_CONFIG.HEADERS,
+      headers: API_HEADERS,
       body: JSON.stringify(payload),
     });
 

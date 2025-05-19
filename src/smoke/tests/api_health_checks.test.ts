@@ -1,23 +1,20 @@
 import { test, expect } from "@playwright/test";
-
-// Configuration
-const API_BASE_URL = "https://resi.uatz.view.com.au/api/pubui";
-const TIMEOUT = 10000; // 10 seconds
-const RESPONSE_TIME_THRESHOLD = 5000;
+import { API_CONFIG, API_ENDPOINTS, API_HEADERS } from "../../config";
 
 test.describe("API Health Checks", () => {
   test.describe("Server Health", () => {
     test("Server health endpoint returns 200", async ({ request }) => {
       const startTime = Date.now();
-      const response = await request.get(`${API_BASE_URL}/health-check`, {
-        timeout: TIMEOUT,
+      const response = await request.get(`${API_CONFIG.BASE_URL}${API_ENDPOINTS.HEALTH}`, {
+        timeout: API_CONFIG.TIMEOUT,
+        headers: API_HEADERS,
       });
 
       const responseTime = Date.now() - startTime;
 
       expect(response.status()).toBe(200);
       expect(response.ok()).toBeTruthy();
-      expect(responseTime).toBeLessThan(RESPONSE_TIME_THRESHOLD);
+      expect(responseTime).toBeLessThan(API_CONFIG.RESPONSE_TIME_THRESHOLD);
     });
   });
 
@@ -26,7 +23,6 @@ test.describe("API Health Checks", () => {
       const startTime = Date.now();
 
       const location = "Richmond, VIC";
-
       const parts = location.split(",");
       const suburb = parts[0].trim();
       const state = parts.length > 1 ? parts[1].trim() : "VIC";
@@ -50,8 +46,9 @@ test.describe("API Health Checks", () => {
         page: 1,
       };
 
-      const response = await request.post(`${API_BASE_URL}/listings/search-result-page/listings-by-location`, {
-        timeout: TIMEOUT,
+      const response = await request.post(`${API_CONFIG.BASE_URL}${API_ENDPOINTS.SEARCH}`, {
+        timeout: API_CONFIG.TIMEOUT,
+        headers: API_HEADERS,
         data: payload,
       });
 
@@ -59,7 +56,7 @@ test.describe("API Health Checks", () => {
 
       expect(response.status()).toBe(200);
       expect(response.ok()).toBeTruthy();
-      expect(responseTime).toBeLessThan(RESPONSE_TIME_THRESHOLD);
+      expect(responseTime).toBeLessThan(API_CONFIG.RESPONSE_TIME_THRESHOLD);
     });
   });
 });
