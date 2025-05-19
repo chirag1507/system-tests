@@ -2,6 +2,8 @@ import { test } from "@playwright/test";
 import { chromium, Browser, Page } from "@playwright/test";
 import { HomePage } from "../drivers/web/pages/home.page";
 import { SearchResultsPage } from "../drivers/web/pages/search-results.page";
+import { API_HEADERS } from "@/config";
+
 test.describe("Property Search", () => {
   let browser: Browser;
   let page: Page;
@@ -16,7 +18,7 @@ test.describe("Property Search", () => {
     page = await browser.newPage();
     // Add the specific header that bypasses DataDome
     await page.setExtraHTTPHeaders({
-      "user-agent": "avesta-ua",
+      ...API_HEADERS,
     });
     homePage = new HomePage(page);
     searchResultsPage = new SearchResultsPage(page);

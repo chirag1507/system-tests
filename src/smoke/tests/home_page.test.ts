@@ -1,39 +1,18 @@
-import { test } from "@playwright/test";
-import { chromium, Browser, Page } from "@playwright/test";
+import { test, expect } from "@playwright/test";
 import { HomePage } from "../drivers/web/pages/home.page";
+import { WEB_CONFIG, WEB_PAGES } from "../../config";
 
-test.describe("Homepage", () => {
-  let browser: Browser;
-  let page: Page;
-  let homePage: HomePage;
-
-  test.beforeAll(async () => {
-    browser = await chromium.launch();
-  });
-
-  test.beforeEach(async () => {
-    page = await browser.newPage();
-
-    await page.setExtraHTTPHeaders({
-      "user-agent": "avesta-ua",
-    });
-
-    homePage = new HomePage(page);
-  });
-
-  test.afterEach(async () => {
-    await page.close();
-  });
-
-  test.afterAll(async () => {
-    await browser.close();
-  });
-
-  test("Homepage loads successfully", async () => {
-    // Navigate to the homepage
-    await page.goto("https://resi.uatz.view.com.au/");
-
-    // Verify page loads and essential elements are present
+test.describe("Home Page", () => {
+  test("should load home page successfully", async ({ page }) => {
+    const homePage = new HomePage(page);
+    await page.goto(`${WEB_CONFIG.BASE_URL}${WEB_PAGES.HOME}`);
     await homePage.verifyPageLoaded();
+  });
+
+  test("should search for properties in Richmond", async ({ page }) => {
+    const homePage = new HomePage(page);
+    await page.goto(`${WEB_CONFIG.BASE_URL}${WEB_PAGES.HOME}`);
+    await homePage.verifyPageLoaded();
+    await homePage.searchProperties("Richmond");
   });
 });

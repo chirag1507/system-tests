@@ -14,6 +14,11 @@ export const config: BaseConfig = configs[environment] || developmentConfig;
 // Export individual config sections for easier access
 export const { baseUrl, timeout, retry } = config;
 
+// Export API configurations
 export * from "./api/constants";
 export * from "./api/endpoints";
 export * from "./api/headers";
+
+// Export Web configurations
+export * from "./web/constants";
+export * from "./web/pages";
