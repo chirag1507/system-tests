@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { API_CONFIG, API_ENDPOINTS, API_HEADERS } from "@/config";
+import { PropertyBuilder } from "../../test-data/builders/property.builder";
 
 test.describe("API Health Checks", () => {
   test.describe("Server Health", () => {
@@ -22,10 +23,7 @@ test.describe("API Health Checks", () => {
     test("Search API endpoint is healthy", async ({ request }) => {
       const startTime = Date.now();
 
-      const location = "Richmond, VIC";
-      const parts = location.split(",");
-      const suburb = parts[0].trim();
-      const state = parts.length > 1 ? parts[1].trim() : "VIC";
+      const property = new PropertyBuilder().build();
 
       const payload = {
         includeSurrounding: true,
@@ -37,10 +35,10 @@ test.describe("API Health Checks", () => {
         saleMethod: ["Sale"],
         locations: [
           {
-            state: state.toLowerCase(),
-            suburbNameSlug: suburb.toLowerCase(),
-            suburbName: suburb.toUpperCase(),
-            postcode: "3121",
+            state: property.state.toLowerCase(),
+            suburbNameSlug: property.suburb.toLowerCase(),
+            suburbName: property.suburb.toUpperCase(),
+            postcode: property.postcode,
           },
         ],
         page: 1,
