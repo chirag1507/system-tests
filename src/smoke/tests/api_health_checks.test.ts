@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { API_CONFIG, API_ENDPOINTS, API_HEADERS } from "../../config";
+import { API_CONFIG, API_ENDPOINTS, API_HEADERS } from "@/config";
 
 test.describe("API Health Checks", () => {
   test.describe("Server Health", () => {

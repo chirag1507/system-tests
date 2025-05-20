@@ -2,14 +2,14 @@ import { Page, ElementHandle } from "@playwright/test";
 import { BasePage } from "./base.page";
 import { Property } from "../../../dsl/models/property";
 import { SearchFilters } from "../../../dsl/models/filters";
-
+import { WEB_CONFIG, WEB_PAGES } from "../../../../config";
 export class SearchResultsPage extends BasePage {
   constructor(page: Page) {
     super(page);
   }
 
   async navigate(): Promise<void> {
-    await this.page.goto("https://resi.uatz.view.com.au/for-sale/vic/in-richmond-3121/");
+    await this.page.goto(`${WEB_CONFIG.BASE_URL}${WEB_PAGES.RICHMOND_SEARCH_RESULTS}`);
     await this.waitForPageLoad();
   }
 
