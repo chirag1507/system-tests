@@ -4,6 +4,7 @@ import { PropertySearchDriver } from "../property_search_driver.interface";
 import { ApiResponse } from "./types";
 import { convertToValidPropertyType } from "./utils";
 import { API_CONFIG, API_ENDPOINTS, API_HEADERS } from "../../../config";
+import { PropertyBuilder } from "../../../test-data/builders/property.builder";
 
 export class PropertySearchApiDriver implements PropertySearchDriver {
   private searchResponse: any;
@@ -14,9 +15,8 @@ export class PropertySearchApiDriver implements PropertySearchDriver {
   }
 
   async searchProperties(location: string, filters?: SearchFilters): Promise<void> {
-    const parts = location.split(",");
-    const suburb = parts[0].trim();
-    const state = parts.length > 1 ? parts[1].trim() : "VIC";
+    // Use PropertyBuilder for test data
+    const property = new PropertyBuilder().withSuburb(location).build();
 
     const payload = {
       includeSurrounding: true,
@@ -28,10 +28,10 @@ export class PropertySearchApiDriver implements PropertySearchDriver {
       saleMethod: ["Sale"],
       locations: [
         {
-          state: state.toLowerCase(),
-          suburbNameSlug: suburb.toLowerCase(),
-          suburbName: suburb.toUpperCase(),
-          postcode: "3121",
+          state: property.state.toLowerCase(),
+          suburbNameSlug: property.suburb.toLowerCase(),
+          suburbName: property.suburb.toUpperCase(),
+          postcode: property.postcode,
         },
       ],
       page: 1,
@@ -65,7 +65,10 @@ export class PropertySearchApiDriver implements PropertySearchDriver {
 
     return this.searchResponse.listings.map((listing: any) => ({
       id: listing.id,
-      location: listing.suburbName,
+      address: listing.address || "",
+      suburb: listing.suburbName,
+      state: listing.state,
+      postcode: listing.postcode || "",
       price: listing.price,
       bedrooms: listing.bedrooms,
       bathrooms: listing.bathrooms,

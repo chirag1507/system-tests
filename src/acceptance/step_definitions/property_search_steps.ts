@@ -68,7 +68,7 @@ Then("the search results should be relevant to my search", async function (this:
   const properties = await this.dsl.getSearchResults();
 
   for (const property of properties) {
-    expect(property.location.toLowerCase()).toContain("richmond");
+    expect(property.suburb.toLowerCase()).toContain("richmond");
   }
 });
 
