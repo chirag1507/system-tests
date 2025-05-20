@@ -58,12 +58,33 @@ export class SearchResultsPage extends BasePage {
       if (!propertyCard) continue;
 
       try {
+        const ariaLabel = await propertyCard.$eval(
+          'a[data-testid="property-link"]',
+          (el) => el.getAttribute("aria-label") || ""
+        );
+        let address = "";
+        let suburb = "";
+        let state = "";
+        let postcode = "";
+        if (ariaLabel) {
+          // Try to parse: "123 Test St, Richmond, VIC 3121"
+          const match = ariaLabel.match(/^(.*?),\s*(.*?),\s*([A-Z]{2,3})\s*(\d{4})?$/);
+          if (match) {
+            address = match[1] || "";
+            suburb = match[2] || "";
+            state = match[3] || "";
+            postcode = match[4] || "";
+          } else {
+            address = ariaLabel;
+          }
+        }
+
         const property: Property = {
           id: (await element.getAttribute("id")) || "",
-          location: await propertyCard.$eval(
-            'a[data-testid="property-link"]',
-            (el) => el.getAttribute("aria-label") || ""
-          ),
+          address,
+          suburb,
+          state,
+          postcode,
           price: 0,
           bedrooms: await this.extractNumber(propertyCard, '[data-testid="bedrooms"]'),
           bathrooms: await this.extractNumber(propertyCard, '[data-testid="bathrooms"]'),
