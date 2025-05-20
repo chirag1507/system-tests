@@ -67,15 +67,24 @@ export class SearchResultsPage extends BasePage {
         let state = "";
         let postcode = "";
         if (ariaLabel) {
-          // Try to parse: "123 Test St, Richmond, VIC 3121"
-          const match = ariaLabel.match(/^(.*?),\s*(.*?),\s*([A-Z]{2,3})\s*(\d{4})?$/);
+          // Try: "123 Test St, Richmond, VIC 3121"
+          let match = ariaLabel.match(/^(.*?),\s*(.*?),\s*([A-Z]{2,3})\s*(\d{4})?$/);
           if (match) {
             address = match[1] || "";
             suburb = match[2] || "";
             state = match[3] || "";
             postcode = match[4] || "";
           } else {
-            address = ariaLabel;
+            // Try: "Richmond, VIC 3121"
+            match = ariaLabel.match(/^([^,]+),\s*([A-Z]{2,3})\s*(\d{4})?$/);
+            if (match) {
+              suburb = match[1] || "";
+              state = match[2] || "";
+              postcode = match[3] || "";
+            } else {
+              // Fallback: treat the whole string as suburb
+              suburb = ariaLabel;
+            }
           }
         }
 
